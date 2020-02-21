@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    margin-top: 20px;
+    margin: 20px auto auto auto;
+    max-width: 1400px;
 `;
 
 
@@ -40,11 +41,29 @@ export const First = styled.div`
 
     div {
         display: flex;
+        flex-direction: column;
         width: 300px;
         height: 100px;
-        background: rgba(242, 244, 250, 0.5);
-        margin-bottom: 1.5rem;
+        background: rgba(242, 244, 250, 0.2);
         border-radius: 4px;
-        align-items: center;
+        justify-content: center;
+        align-items: left;
+        padding-left: 30px;
+
+        strong {
+            font-size: .7375rem;
+            color: rgba(242, 244, 250, 1);
+        }
+
+        small {
+            font-size: 1.5rem;
+            color: #fff;
+            font-weight: bold;
+            margin-top: 2px;
+        }
     }
+`;
+
+export const Middle = styled.div`
+    display: flex;
 `;
