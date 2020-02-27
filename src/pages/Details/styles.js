@@ -10,13 +10,20 @@ export const Container = styled.div`
             flex-direction: column;
             margin-top: 30px;
 
+            p {
+                color: #fff;
+                padding: 15px 0 10px 5px;
+                font-size: 16px;
+                font-weight: bold;
+            }
+
             input {
                 background: rgba(0, 0, 0, 0.1);
                 border: 0;
                 border-radius: 4px;
                 height: 44px;
                 padding: 15px;
-                color: #fff;
+                color: #DBDBDB;
                 margin: 0 0 10px;
 
                 &::placeholder {
@@ -47,21 +54,4 @@ export const Container = styled.div`
                     }
                 }
         };
-
-        > button {
-                width: 100%;
-                margin: 10px 0 0;
-                height: 44px;
-                background: #F64C75;
-                color: #fff;
-                border: 0;
-                border-radius: 4px;
-                font-size: 16px;
-                transition: background 0.2s;
-
-                    &:hover {
-                        background: ${darken(0.08, '#F64C75')}
-                    }
-                }
-  
 `;
