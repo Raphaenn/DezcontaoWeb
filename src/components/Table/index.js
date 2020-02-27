@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { MdSearch } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { MdSearch, MdEdit } from "react-icons/md";
 
 import api from "../../services/api";
 
@@ -54,7 +55,7 @@ export default function Table() {
               <th>Logo</th>
               <th>Empresa</th>
               <th>Categoria</th>
-              <th>Cupons Solicitados</th>
+              <th>Editar</th>
             </tr>
           </thead>
           <tbody>
@@ -71,7 +72,9 @@ export default function Table() {
                     <p>{item.categories.name}</p>
                   </td>
                   <td>
-                    <p>10</p>
+                    <Link to={`detalhes/${item.id}`}>
+                      <MdEdit size={20} color="#666666" />
+                    </Link>
                   </td>
                 </tr>
               ))
