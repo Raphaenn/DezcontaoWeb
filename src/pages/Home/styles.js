@@ -1,22 +1,48 @@
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
+import { darken } from 'polished';
 
 export const Container = styled.div`
     margin: 20px auto auto auto;
     max-width: 1400px;
 `;
 
-
 export const Top = styled.div`
-    display: block;
+    display: flex;
+    align-items: center;
     border-bottom: 1px solid rgba(242, 244, 250, 0.5);
     padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 1rem;
     padding-right: 12px;
     padding-left: 12px;
     width: 100%;
     max-width: 95%;
     margin-right: auto;
     margin-left: auto;
+    justify-content: space-between;
+`;
+
+export const Register = styled(Link)`
+        display: flex;
+        align-items: center;
+        height: 44px;
+        width: 100px;
+        padding: 5px;
+        background: #fff;
+        border: 0;
+        border-radius: 4px;
+        transition: background 0.2s;
+
+        &:hover {
+            background: ${darken(0.03, '#fff')}
+        }
+
+        p {
+            color: #7E59C1;
+            font-size: 16px;
+            margin-right: 10px;
+            margin-left: 15px;
+        }
 `;
 
 export const Title = styled.strong`

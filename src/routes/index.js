@@ -7,6 +7,7 @@ import SignUp from "../pages/SignUp";
 
 import Home from "../pages/Home";
 import Details from "../pages/Details";
+import New from "../pages/New";
 
 export default function Routes() {
     return (
@@ -14,7 +15,8 @@ export default function Routes() {
             <Route path="/" exact component={SignIn}/>
             <Route path="/register" component={SignUp}/>
             <Route path="/home" component={Home} isPrivate/>
-            <Route path="/detalhes/:id" component={Details} isPrivate/>
+            <Route path="/novo" component={New} isPrivate/>
+            <Route path="/detalhes" component={Details} isPrivate/>
         </Switch>
     )
 }

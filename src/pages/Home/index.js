@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { MdSearch } from "react-icons/md";
+import { MdSearch, MdAddCircle } from "react-icons/md";
 
 import api from "../../services/api";
-import { Container, Title, Top, First, Middle } from './styles';
+import { Container, Title, Top, First, Middle, Register } from './styles';
 import Grafic from "../../components/Grafic";
 import Table from "../../components/Table";
 
@@ -30,6 +30,7 @@ export default function Home() {
     <Container>
       <Top>
         <Title>Dashboard</Title>
+        <Register to='/novo'><p>New</p><MdAddCircle size={20} color="#7E59C1" /></Register>
       </Top>
       {/* <MdSearch size={20} color="#666666" position="absolute;" /> */}
       <First>

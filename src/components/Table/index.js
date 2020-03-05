@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { MdSearch, MdEdit } from "react-icons/md";
 
 import api from "../../services/api";
+import { addToEdit } from "../../store/modules/edit/actions";
 
 import Pagination from "../Pagination";
 import { Grafic1, FirtFrame, Desc, Contents, SearchBar } from './styles';
 
-export default function Table() {
+function Table() {
 
     const [ Cdata, setCdata ] = useState([]);
     const [ filtro, setFiltro ] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [listPerPage] = useState(5);
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
     async function loadInfo() {
@@ -39,6 +43,10 @@ export default function Table() {
         return lista.name.toLowerCase().indexOf(filtro) !== -1;
       }
     )
+
+    function handleEdit(item) {
+      dispatch(addToEdit(item));
+    }
 
   return (
     <Grafic1>
@@ -72,7 +80,7 @@ export default function Table() {
                     <p>{item.categories.name}</p>
                   </td>
                   <td>
-                    <Link to={`detalhes/${item.id}`}>
+                    <Link to="detalhes" onClick={() => handleEdit(item)} >
                       <MdEdit size={20} color="#666666" />
                     </Link>
                   </td>
@@ -91,3 +99,5 @@ export default function Table() {
     </Grafic1>
   );
 }
+
+export default connect()(Table);

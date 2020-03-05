@@ -5,9 +5,7 @@ import * as Yup from 'yup';
 
 import { Container } from './styles';
 
-export default function Details() {
-
-  const companies = useSelector(state => state.Edit.dados);
+export default function New() {
 
   const schema = Yup.object().shape({
     name: Yup.string().required("Campo Obrigatório"),
@@ -28,7 +26,7 @@ export default function Details() {
   return (
     <Container>
       
-        <Form initialData={companies} schema={schema}>
+        <Form schema={schema}>
           <p>Nome da empresa</p>
           <Input name="name"placeholder=""/>
 
@@ -78,7 +76,7 @@ export default function Details() {
           <p>Destaque</p>
           <Input name="highlight" placeholder=""/>
 
-          <button type="submit">Atualizar Dados</button>
+          <button type="submit">Cadastrar empresa</button>
         </Form>
       
     </Container>
