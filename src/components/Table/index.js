@@ -90,7 +90,7 @@ function Table() {
           </tbody>
           <div></div>
         </FirtFrame>
-        <Desc>Showing products to {listPerPage} of {Cdata.length}</Desc>
+        <Desc>Showing companies to {listPerPage} of {Cdata.length}</Desc>
         <Pagination 
           listPerPage={listPerPage}
           totalPages={Cdata.length}
