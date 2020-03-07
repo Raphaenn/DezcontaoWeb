@@ -10,6 +10,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
+
 import Compform from './Compform';
 import Negform from './Negform';
 import Review from './Review';
@@ -27,12 +28,45 @@ function Copyright() {
   );
 }
 
+
+
+export default function New() {
+
+  const classes = useStyles();
+  const [activeStep, setActiveStep] = useState(0);
+  const [ formulario, setFormulario ] = useState({ 
+    nome: '', 
+    email: '',
+    address: '',
+    phone: '',
+    cep: '',
+    social: '',
+    open: '',
+    latitude: '',
+    longitude: '',
+  });
+
+  const { nome, email, address, phone, cep, social, open, latitude, longitude } = formulario;
+  const values = { nome, email, address, phone, cep, social, open, latitude, longitude };
+
+  const handleNext = () => {
+    setActiveStep(activeStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep(activeStep - 1);
+  };
+
+  const handleChange = input => event => {
+    setFormulario({ ...formulario, [input]: event.target.value})
+  }
+
 const steps = ['Dados da empresa', 'Promoções', 'Review do cadastro'];
 
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <Compform/>;
+      return <Compform  handleChange={handleChange} values={values} />;
     case 1:
       return <Negform />;
     case 2:
@@ -41,17 +75,6 @@ function getStepContent(step) {
       throw new Error('Unknown step');
   }
 }
-
-export default function New() {
-  const classes = useStyles();
-  const [activeStep, setActiveStep] = useState(0);
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
-  };
 
   return (
     <Fragment>

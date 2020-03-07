@@ -3,27 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 
-export default function Compform() {
-
-  const [ formulario, setFormulario ] = useState({ 
-      name: '', 
-      email: '',
-      address: '',
-      phone: '',
-      cep: '',
-      social: '',
-      open: '',
-      latitude: '',
-      longitude: '',
-    });
-
-  const updateField = e => {
-    setFormulario({
-      ...formulario,
-      [e.target.name]: e.target.value
-    });
-  };
-
+export default function Compform({ handleChange, values }) {
 
   return (
     <Fragment>
@@ -34,93 +14,88 @@ export default function Compform() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="firstName"
-            name="name"
-            value={formulario.name}
             label="Nome"
             fullWidth
-            autoComplete="fname"
-            onChange={updateField}
+            onChange={handleChange('nome')}
+            defaultValue={values.nome}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            name="email"
             label="Email"
             fullWidth
-            value={formulario.email}
-            autoComplete="lname"
-            onChange={updateField}
+            onChange={handleChange('email')}
+            defaultValue={values.email}
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
             required
             name="address"
-            value={formulario.address}
+            defaultValue={values.address}
             label="Endereço"
             fullWidth
-            onChange={updateField}
+            onChange={handleChange('address')}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             required
             name="phone"
-            value={formulario.phone}
+            defaultValue={values.phone}
             label="Telefone"
             fullWidth
-            onChange={updateField}
+            onChange={handleChange('phone')}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField 
           required 
           name="cep" 
-          value={formulario.cep}
+          defaultValue={values.cep}
           label="Cep" 
           fullWidth 
-          onChange={updateField}
+          onChange={handleChange('cep')}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             required
             name="open"
-            value={formulario.open}
+            defaultValue={values.open}
             label="Horário de atendimento"
             fullWidth
-            onChange={updateField}
+            onChange={handleChange('open')}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             name="social"
-            value={formulario.social}
+            defaultValue={values.social}
             label="Instagram"
             fullWidth
-            onChange={updateField}
+            onChange={handleChange('social')}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             required
             name="latitude"
-            value={formulario.latitude}
+            defaultValue={values.latitude}
             label="Latitude"
             fullWidth
-            onChange={updateField}
+            onChange={handleChange('latitude')}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             required
             name="longitude"
-            value={formulario.longitude}
+            defaultValue={values.longitude}
             label="Longitude"
             fullWidth
-            onChange={updateField}
+            onChange={handleChange('longitude')}
           />
         </Grid>
         <Grid item xs={12}>
