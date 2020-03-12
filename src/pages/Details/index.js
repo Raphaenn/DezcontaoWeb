@@ -7,7 +7,7 @@ import { Container } from './styles';
 
 export default function Details() {
 
-  const companies = useSelector(state => state.Edit.dados);
+  const companies = useSelector(state => state.edit.dados);
 
   const schema = Yup.object().shape({
     name: Yup.string().required("Campo Obrigatório"),

@@ -1,8 +1,10 @@
 import React, { useState, Fragment } from 'react';
+import { useDispatch } from 'react-redux';
+import { toast } from "react-toastify";
+
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -10,6 +12,9 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
+
+import api from "../../services/api";
+import { addRequest } from "../../store/modules/edit/actions";
 
 import Compform from './Compform';
 import Negform from './Negform';
@@ -29,29 +34,70 @@ function Copyright() {
 }
 
 
-
 export default function New() {
-
+  const dispatch = useDispatch();
   const classes = useStyles();
+  const steps = ['Dados da empresa', 'Promoções', 'Review do cadastro'];
   const [activeStep, setActiveStep] = useState(0);
   const [ formulario, setFormulario ] = useState({ 
-    nome: '', 
+    name: '', 
     email: '',
     address: '',
     phone: '',
     cep: '',
     social: '',
-    open: '',
+    open_to: '',
     latitude: '',
     longitude: '',
+    obs: '',
+    paymentform: 'dinheiro',
+    ticket: '',
+    ticket2: '',
+    ticket3: '',
+    ticket4: '',
+    highlight: false,
+    categories: 1,
+    path1: 1
   });
 
-  const { nome, email, address, phone, cep, social, open, latitude, longitude } = formulario;
-  const values = { nome, email, address, phone, cep, social, open, latitude, longitude };
+  const { name, email, address, phone, cep, social, open_to, latitude, longitude, obs, paymentform, ticket, ticket2, ticket3, ticket4, highlight } = formulario;
+  const values = { name, email, address, phone, cep, social, open_to, latitude, longitude, obs, paymentform, ticket, ticket2, ticket3, ticket4, highlight };
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
+
+  const handleSave = async () => {
+    setActiveStep(activeStep + 1);
+
+    dispatch(addRequest(formulario));
+
+  //   try {
+
+  //     await api.post('companies', {
+  //       name: nome,
+  //       email: email,
+  //       social: social,
+  //       phone: phone,
+  //       cep: cep,
+  //       address: address,
+  //       open_to: open,
+  //       latitude: latitude,
+  //       longitude: longitude,
+  //       paymentform: paymentform,
+  //       obs: obs,
+  //       ticket: ticket,
+  //       ticket: ticket2,
+  //       ticket: ticket3,
+  //       ticket: ticket4,
+  //       highlight: highlight
+  //     });
+
+  //   } catch (err) {
+  //     toast.error('Erro ao cadastrar nova empresa, confira os dados!');
+  // }
+    
+  }
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
@@ -61,16 +107,14 @@ export default function New() {
     setFormulario({ ...formulario, [input]: event.target.value})
   }
 
-const steps = ['Dados da empresa', 'Promoções', 'Review do cadastro'];
-
 function getStepContent(step) {
   switch (step) {
     case 0:
       return <Compform  handleChange={handleChange} values={values} />;
     case 1:
-      return <Negform />;
+      return <Negform handleChange={handleChange} values={values} />;
     case 2:
-      return <Review />;
+      return <Review values={values} />;
     default:
       throw new Error('Unknown step');
   }
@@ -79,14 +123,6 @@ function getStepContent(step) {
   return (
     <Fragment>
       <CssBaseline />
-      
-      <AppBar position="absolute" color="default" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Company name
-          </Typography>
-        </Toolbar>
-      </AppBar>
 
       <main className={classes.layout}>
         <Paper className={classes.paper}>
@@ -107,7 +143,7 @@ function getStepContent(step) {
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order confirmation, and will
+                  Your register number is {name.substr(0,3) + Math.floor(Math.random() * 10000 + 9999)}. We have emailed your order confirmation, and will
                   send you an update when your order has shipped.
                 </Typography>
               </Fragment>
@@ -120,7 +156,18 @@ function getStepContent(step) {
                       Back
                     </Button>
                   )}
-                  <Button
+                  {activeStep === 2 ? (
+                    <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleSave}
+                    className={classes.button}
+                  >
+                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                  </Button>
+                  ) :
+                  (
+                    <Button
                     variant="contained"
                     color="primary"
                     onClick={handleNext}
@@ -128,6 +175,10 @@ function getStepContent(step) {
                   >
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>
+                  )
+
+                  }
+                  
                 </div>
               </Fragment>
             )}
@@ -140,9 +191,6 @@ function getStepContent(step) {
 }
 
 const useStyles = makeStyles(theme => ({
-  appBar: {
-    position: 'relative',
-  },
   layout: {
     width: 'auto',
     marginLeft: theme.spacing(2),

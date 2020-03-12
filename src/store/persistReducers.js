@@ -6,7 +6,7 @@ export default reducers => {
         // key define qual aplicaçao vai usar a storage
         key: 'dezcontao',
         storage,
-        whitelist: ['Edit']
+        whitelist: ['edit']
     },
     reducers
     );

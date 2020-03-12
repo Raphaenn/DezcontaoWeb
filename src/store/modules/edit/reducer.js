@@ -9,8 +9,15 @@ export default function edit(state = INITIAL_STATE, action) {
         case 'ADD_TO_EDIT':
             return produce(state, draft => {
                 draft.dados = action.item;
-            })
-        default: 
+            });
+
+        // case 'ADD_COMPANY_SUCCESS':
+        //     return produce(state, draft => {
+        //         draft.dados = action.payload.item
+        //         console.tron.log("reducer ok")
+        //     })
+            
+        default:
             return state;
     }
 }

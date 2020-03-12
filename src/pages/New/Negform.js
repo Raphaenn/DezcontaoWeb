@@ -5,24 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-export default function Negform() {
-
-  const [ formularioTwo, setFormularioTwo ] = useState({ 
-    descricao: '', 
-    desc: '',
-    desc1: '',
-    desc2: '',
-    desc3: '',
-    highlight: false,
-  });
-
-const updateField = e => {
-  setFormularioTwo({
-    ...formularioTwo,
-    [e.target.name]: e.target.value
-  });
-};
-
+export default function Negform({ handleChange, values }) {
 
   return (
     <Fragment>
@@ -33,48 +16,48 @@ const updateField = e => {
         <Grid item xs={12} md={12}>
           <TextField required
           name="descricao"
-          value={formularioTwo.descricao}
+          defaultValue={values.obs}
           label="Descrição da atividade" 
           fullWidth
-          onChange={updateField}
+          onChange={handleChange('obs')}
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField 
           required 
           name="desc" 
-          value={formularioTwo.desc}
+          defaultValue={values.ticket}
           label="Desconto obrigatório" 
           fullWidth 
-          onChange={updateField}
+          onChange={handleChange('ticket')}
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField 
           name="desc1" 
-          value={formularioTwo.desc1}
+          defaultValue={values.ticket2}
           label="Desconto Optativo 1" 
           fullWidth 
-          onChange={updateField}
+          onChange={handleChange('ticket2')}
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
             name="desc2"
-            value={formularioTwo.desc2}
+            defaultValue={values.ticket3}
             label="Desconto Optativo 2"
-            helperText="Last three digits on signature strip"
+            // helperText="Last three digits on signature strip"
             fullWidth
-            onChange={updateField}
+            onChange={handleChange('ticket3')}
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField 
           name="desc3" 
-          value={formularioTwo.desc3}
+          defaultValue={values.ticket4}
           label="Desconto Optativo 3" 
           fullWidth 
-          onChange={updateField}
+          onChange={handleChange('ticket4')}
           />
         </Grid>
         <Grid item xs={12}>
@@ -83,8 +66,8 @@ const updateField = e => {
             <Checkbox 
             color="primary" 
             name="highlight" 
-            value={true} 
-            onChange={updateField}
+            defaultValue={values.highlight} 
+            onChange={handleChange('highlight')}
             />
           }
             label="Plano destaque"

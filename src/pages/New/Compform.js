@@ -14,10 +14,11 @@ export default function Compform({ handleChange, values }) {
         <Grid item xs={12} sm={6}>
           <TextField
             required
+            name="name"
             label="Nome"
             fullWidth
-            onChange={handleChange('nome')}
-            defaultValue={values.nome}
+            onChange={handleChange('name')}
+            defaultValue={values.name}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -62,11 +63,11 @@ export default function Compform({ handleChange, values }) {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            name="open"
-            defaultValue={values.open}
+            name="open_to"
+            defaultValue={values.open_to}
             label="Horário de atendimento"
             fullWidth
-            onChange={handleChange('open')}
+            onChange={handleChange('open_to')}
           />
         </Grid>
         <Grid item xs={12} sm={6}>

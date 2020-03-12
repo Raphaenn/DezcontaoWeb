@@ -2,8 +2,8 @@
 
 import { combineReducers } from "redux";
 
-import Edit from "./edit/reducer";
+import edit from "./edit/reducer";
 
 export default combineReducers({
-    Edit,
+    edit,
 });
