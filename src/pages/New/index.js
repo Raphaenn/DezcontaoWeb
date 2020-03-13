@@ -71,31 +71,6 @@ export default function New() {
     setActiveStep(activeStep + 1);
 
     dispatch(addRequest(formulario));
-
-  //   try {
-
-  //     await api.post('companies', {
-  //       name: nome,
-  //       email: email,
-  //       social: social,
-  //       phone: phone,
-  //       cep: cep,
-  //       address: address,
-  //       open_to: open,
-  //       latitude: latitude,
-  //       longitude: longitude,
-  //       paymentform: paymentform,
-  //       obs: obs,
-  //       ticket: ticket,
-  //       ticket: ticket2,
-  //       ticket: ticket3,
-  //       ticket: ticket4,
-  //       highlight: highlight
-  //     });
-
-  //   } catch (err) {
-  //     toast.error('Erro ao cadastrar nova empresa, confira os dados!');
-  // }
     
   }
 
@@ -140,7 +115,7 @@ function getStepContent(step) {
             {activeStep === steps.length ? (
               <Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
+                  O cadastro da {name} foi realizado com sucesso.
                 </Typography>
                 <Typography variant="subtitle1">
                   Your register number is {name.substr(0,3) + Math.floor(Math.random() * 10000 + 9999)}. We have emailed your order confirmation, and will

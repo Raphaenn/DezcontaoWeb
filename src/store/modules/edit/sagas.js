@@ -24,15 +24,15 @@ export function* CompanyRegister({ payload }) {
             obs,
             ticket,
             path1: 1,
-            category: 4,
+            category: 1,
             highlight: false
         });
 
-        toast.success('Perfil atualizado com sucesso!');
+        toast.success('Cadastro realizado com sucesso!');
 
 
     } catch (err) {
-        toast.error('Erro ao cadastrar usuário, confira os dados!');
+        toast.error('Erro ao cadastrar empresa, confira os dados!');
         yield put(addCompanyFailure())
     }
 
