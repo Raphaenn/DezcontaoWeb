@@ -3,13 +3,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { Form, Input } from "@rocketseat/unform";
 import * as Yup from 'yup';
 
+import AvatarInput from './AvatarInput';
 import { Container } from './styles';
+
+import { updateCompanyRequest } from "../../store/modules/edit/actions";
 
 export default function Details() {
 
+  const dispatch = useDispatch();
   const companies = useSelector(state => state.edit.dados);
 
   const schema = Yup.object().shape({
+    id: Yup.string(),
     name: Yup.string().required("Campo Obrigatório"),
     email: Yup.string("Email Inválido").required("Campo Obrigatório"),
     social: Yup.string("Instagram Inválido").required("Campo Obrigatório"),
@@ -22,61 +27,78 @@ export default function Details() {
     paymentform: Yup.string("Campo Inválido").required("Campo Obrigatório"),
     obs: Yup.string("Campo Inválido").required("Campo Obrigatório"),
     ticket: Yup.string("Campo Inválido").required("Campo Obrigatório"),
+    ticket2: Yup.string("Campo Inválido"),
+    ticket3: Yup.string("Campo Inválido"),
+    ticket4: Yup.string("Campo Inválido"),
     highlight: Yup.string("Campo Inválido").required("Campo Obrigatório"),
 });
 
+function handlesubmit(data) {
+  dispatch(updateCompanyRequest(data))
+};
+
   return (
     <Container>
-      
-        <Form initialData={companies} schema={schema}>
+                
+        <Form initialData={companies} schema={schema} onSubmit={handlesubmit} >
+
+          <a>
+            <p>Id</p>
+            <Input name="id"/>
+          </a>
+          <AvatarInput name="path_id"/>
+
           <p>Nome da empresa</p>
-          <Input name="name"placeholder=""/>
+          <Input name="name"/>
 
           <p>Email</p>
-          <Input name="email" placeholder=""/>
+          <Input name="email" />
 
           <p>Instagram</p>
-          <Input name="social" placeholder=""/>
+          <Input name="social" />
 
           <p>Telefone</p>
-          <Input name="phone" placeholder=""/>
+          <Input name="phone" />
           <hr/>
 
           <p>Cep</p>
-          <Input name="cep" placeholder=""/>
+          <Input name="cep" />
 
           <p>Endereço</p>
-          <Input name="address" placeholder=""/>
+          <Input name="address" />
 
           <p>Horário de funcionamento</p>
-          <Input name="open_to" placeholder=""/>
+          <Input name="open_to" />
 
           <p>Latitude</p>
-          <Input name="latitude" placeholder=""/>
+          <Input name="latitude" />
           
           <p>Longitude</p>
-          <Input name="longitude" placeholder=""/>
+          <Input name="longitude" />
           
           <p>Forma de pagamento</p>
-          <Input name="paymentform" placeholder=""/>
+          <Input name="paymentform" />
           
           <p>Obs</p>
-          <Input name="obs" placeholder=""/>
+          <Input name="obs" />
           
           <p>Ticket</p>
-          <Input name="ticket" placeholder=""/>
+          <Input name="ticket" />
           
           <p>Ticket 2</p>
-          <Input name="ticket2" placeholder=""/>
+          <Input name="ticket2" />
           
           <p>Ticket 3</p>
-          <Input name="ticket3" placeholder=""/>
+          <Input name="ticket3" />
           
-          <p>Ticket 3</p>
-          <Input name="ticket4" placeholder=""/>
+          <p>Ticket 4</p>
+          <Input name="ticket4" />
           
           <p>Destaque</p>
-          <Input name="highlight" placeholder=""/>
+          <Input name="highlight" />
+
+          <p>Categoria</p>
+          <Input name="category" placeholder={companies.categories.id} />
 
           <button type="submit">Atualizar Dados</button>
         </Form>

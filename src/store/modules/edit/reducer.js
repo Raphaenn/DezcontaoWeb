@@ -10,13 +10,11 @@ export default function edit(state = INITIAL_STATE, action) {
             return produce(state, draft => {
                 draft.dados = action.item;
             });
-
-        // case 'ADD_COMPANY_SUCCESS':
-        //     return produce(state, draft => {
-        //         draft.dados = action.payload.item
-        //         console.tron.log("reducer ok")
-        //     })
-            
+        case 'UPDATE_PROFILE_SUCCESS':
+            return produce(state, draft => {
+                draft.dados = action.payload.profile;
+                // console.tron.log(state)
+            });
         default:
             return state;
     }

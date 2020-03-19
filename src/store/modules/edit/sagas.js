@@ -1,9 +1,9 @@
 import { takeLatest, call, put, all } from "redux-saga/effects";
 import { toast } from "react-toastify";
 
-import history from '../../../services/history';
+// import history from '../../../services/history';
 import api from "../../../services/api";
-import { addCompany, addCompanyFailure } from "./actions";
+import { addCompanyFailure, updateProfileSuccess,updateCompanyFailure } from "./actions";
 
 export function* CompanyRegister({ payload }) {
 
@@ -25,7 +25,7 @@ export function* CompanyRegister({ payload }) {
             ticket,
             path1: 1,
             category: 1,
-            highlight: false
+            highlight: false,
         });
 
         toast.success('Cadastro realizado com sucesso!');
@@ -38,6 +38,30 @@ export function* CompanyRegister({ payload }) {
 
 }
 
+export function* updateCompany({ payload }) {
+
+    try {
+
+        const { id, name, email, address, phone, cep, social, open_to, latitude, longitude, obs, paymentform, ticket, ticket2, ticket3, ticket4, highlight, category } = payload.data; 
+
+        const CompanyData = { name, email, address, phone, cep, social, open_to, latitude, longitude, obs, paymentform, ticket, ticket2, ticket3, ticket4, highlight, category }
+
+        const response = yield call(api.put, `companies/${id}`, CompanyData);
+
+        toast.success('Dados atualizados com sucesso!');
+
+        yield put(updateProfileSuccess(response.data))
+
+        // history.push('home'); -> caso queira futuramente redirecionar para home page
+
+    } catch(err) {
+        toast.error('Erro ao atualizar dados, tente novamente.');
+        yield put(updateCompanyFailure())
+    }
+
+}
+
 export default all([
-    takeLatest('ADD_COMPANY_REQUEST', CompanyRegister)
+    takeLatest('ADD_COMPANY_REQUEST', CompanyRegister),
+    takeLatest('UPDATE_COMPANY_REQUEST', updateCompany),
 ]);
