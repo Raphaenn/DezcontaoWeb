@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 import name from "../../assets/Name.png"
-import { Container, Content, Profile } from './styles';
+import { Container, Content, Profile, Top } from './styles';
 
 export default function Header() {
   return (
@@ -10,7 +10,9 @@ export default function Header() {
         <Content>
           <nav>
             <img src={name} alt="Dezcontao" />
-            <Link to="/home">Home</Link>
+              <Top to="/home">Home</Top>
+              <Top to="/categorias">Categorias</Top>
+              <Top to="/tickets">Tickets</Top>
           </nav>
 
           <aside>
