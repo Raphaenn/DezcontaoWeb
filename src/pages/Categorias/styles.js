@@ -24,7 +24,7 @@ export const Body = styled.div`
 export const Left = styled.div`
     flex: 1;
     margin: 5px;
-    border-radius: 15px;
+    border-radius: 15px;  
 
     h1 {
         font-size: 18px;
@@ -34,28 +34,22 @@ export const Left = styled.div`
     }
 `;
 
-export const Right = styled.div`
-    flex: 3;
-    background: rgba(235, 235, 235);
-    margin: 5px;
-
-    h1 {
-        font-size: 18px;
-        color: #282828;
-        margin-top: 20px;
-        margin-left: 20px;
-    }
+export const List = styled(PerfectScrollbar)`
+    border: 1px solid rgba(235, 235, 235);
+    border-radius: 15px;
+    width: 100%;
+    max-width: 360px;
+    max-height: 500px;
+    margin-top: 10px;
 `;
 
 export const ListItem = styled.li`
     display: flex;
     flex-direction: row;
     border-radius: 4px;
-    padding: 20px;
+    padding: 15px;
+    border-bottom: 1px solid rgba(235, 235, 235, 0.2);
 
-     li {
-        border-bottom: 1px solid rgba(235, 235, 235);
-    }
 `;
 
 export const ListItemAvatar = styled.div``;
@@ -79,20 +73,48 @@ export const ListItemText2 = styled.p`
     color: #666666;
 `;
 
-export const Scroll = styled(PerfectScrollbar)`
-    max-height: 260px;
-    padding: 5px 15px;
+//**************************************** RIGHT ************************************** */
+
+export const Right = styled.div`
+    flex: 3;
+    border: 1px solid rgba(235, 235, 235);
+    border-radius: 20px;
+    margin: 5px;
+
+    h1 {
+        font-size: 18px;
+        color: #282828;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+`;
+
+export const Divisor = styled.div`
+    margin-top: 400px;
+    border-top: 1px dashed rgba(235, 235, 235);
+`;
+
+export const Footer = styled.div`
+    display: flex;
+    margin-top: 20px;
 `;
 
 export const FormField = styled.div`
     display: flex;
-    flex-direction: column;
-    max-width: 200px;
+    flex-direction: row;
+    max-width: 600px;
+    margin: 20px 0px 0px 30px;
+
+    h2 {
+        position: absolute;
+        font-size: 16px;
+        color: #666666;
+        margin: -25px 0 0 0px;
+    }
 `;
 
 export const ButtonField = styled.button`
-    margin: 5px 0 0;
-    height: 44px;
+    width: 150px;
     background: #3b9eff;
     color: #fff;
     border: 0;

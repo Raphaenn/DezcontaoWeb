@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import List from '@material-ui/core/List';
+import { useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import ClassIcon from '@material-ui/icons/Class';
-import { makeStyles } from '@material-ui/core/styles';
 
 
 import api from "../../services/api";
-import { Container, Body, Left, Right, Scroll, ListItem, ListItemAvatar, Avatar, ListItemText, ListItemText2, FormField, ButtonField } from './styles';
+import { addCatRequest } from "../../store/modules/categories/actions";
+import CatGrafic from "../../components/CatgGrafic";
+
+import { Container, Body, Left, Right, List, ListItem, ListItemAvatar, Avatar, ListItemText, ListItemText2, FormField, ButtonField, Divisor, Footer } from './styles';
 
 export default function Categorias() {
 
-  const classes = useStyles();
+  const dispatch = useDispatch();
   const [ categorias, setCategorias ] = useState([]);
+  const [ catform, setCatform ] = useState({
+    name: '',
+    city: '',
+    state: ''
+  });
 
   useEffect(() => {
     async function loadCat() {
@@ -23,6 +30,16 @@ export default function Categorias() {
     loadCat();
     }, []);
 
+    const handleChange = input => event => {
+      setCatform({ ...catform, [input]: event.target.value})
+    }
+
+    const handleSave = async () => {
+      dispatch(addCatRequest(catform));
+      
+    }
+    
+
   return (
     <Container>
 
@@ -32,10 +49,9 @@ export default function Categorias() {
           <div>
             <h1>Categorias</h1>
 
-            <List className={classes.root}>
+            <List >
 
               { categorias.map( item => (
-                <Scroll>
                  <ListItem>
                  <ListItemAvatar>
                    <Avatar>
@@ -47,8 +63,7 @@ export default function Categorias() {
                   <ListItemText> {item.name} </ListItemText>
                   <ListItemText2>Id: {item.id} </ListItemText2>
                  </div>
-               </ListItem>
-               </Scroll>
+               </ListItem> 
               )) }
 
             </List>
@@ -58,14 +73,20 @@ export default function Categorias() {
         </Left>
 
         <Right>
-          {/* <h1>Categorias</h1> */}
-          
-          <FormField>
-            <TextField id="outlined-basic" label="Nome" variant="outlined" />
-            <TextField id="outlined-basic" label="Cidade" variant="outlined" style={{ marginTop: 20 }} />
-            <TextField id="outlined-basic" label="Estado" variant="outlined" style={{ marginTop: 20 }} />
-            <ButtonField>Enviar</ButtonField>
-          </FormField>
+          <h1>Categorias x Empresas</h1>
+
+          <Divisor />
+          <Footer>
+            <FormField>
+              <h2>Nova Categoria</h2>
+              <TextField name="name" label="Nome" variant="outlined" onChange={handleChange('name')}
+            /* defaultValue={values.name} */ />
+              <TextField name="city" label="Cidade" variant="outlined" style={{ marginLeft: 20 }} onChange={handleChange('city')} />
+              <TextField name="state" label="Estado" variant="outlined" style={{ marginLeft: 20, marginRight: 20 }} onChange={handleChange('state')} />
+              <ButtonField onClick={handleSave} >Enviar</ButtonField>
+            </FormField>
+          </Footer>
+
         </Right>
 
       </Body>
@@ -74,17 +95,17 @@ export default function Categorias() {
   );
 }
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    border: '1px solid rgba(235, 235, 235)',
-    borderRadius: 15,
-    width: '100%',
-    maxWidth: 360,
-    maxHeight: 360,
-    marginTop: 10,
-    backgroundColor: theme.palette.background.paper,
-  },
-  field: {
-    marginTop: 20,
-  },
-}));
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     border: '1px solid rgba(235, 235, 235)',
+//     borderRadius: 15,
+//     width: '100%',
+//     maxWidth: 360,
+//     maxHeight: '100%',
+//     marginTop: 10,
+//     backgroundColor: theme.palette.background.paper,
+//   },
+//   field: {
+//     marginTop: 20,
+//   },
+// }));

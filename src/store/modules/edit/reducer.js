@@ -13,7 +13,6 @@ export default function edit(state = INITIAL_STATE, action) {
         case 'UPDATE_PROFILE_SUCCESS':
             return produce(state, draft => {
                 draft.dados = action.payload.profile;
-                // console.tron.log(state)
             });
         default:
             return state;

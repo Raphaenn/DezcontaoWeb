@@ -50,7 +50,7 @@ export default function New() {
     latitude: '',
     longitude: '',
     obs: '',
-    paymentform: 'dinheiro',
+    paymentform: '',
     ticket: '',
     ticket2: '',
     ticket3: '',
