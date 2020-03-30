@@ -89,8 +89,16 @@ export const Right = styled.div`
     }
 `;
 
+export const SpaceGrafc = styled.div`
+    display: flex;
+    margin-top: 5px;
+    width: 100%;
+    height: 70%;
+    background: red;
+`;
+
 export const Divisor = styled.div`
-    margin-top: 400px;
+    margin-top: 10px;
     border-top: 1px dashed rgba(235, 235, 235);
 `;
 

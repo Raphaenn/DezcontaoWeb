@@ -1,31 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ResponsiveBar } from '@nivo/bar'
 
 import { Container } from './styles';
-import Test from "../../services/test.json"
+import api from "../../services/api";
+import test from "../../services/test.json"
 
 export default function CatGrafic({}) {
+
+    const [ categorias, setCategorias ] = useState([]);
+    const [ chartData, setChartData ] = useState({});
+
+    const testando = test;
+    const filtrando = testando.map(item => item.categories.name);
+    const somatorio = testando.reduce(function( object , item ){  
+        if ( !object[item.categories.name] ) {
+           object[item.categories.name]=1;
+        } else {
+           object[item.categories.name]++;
+        }
+        return object; 
+      },{});  
+
+    console.tron.log(somatorio);
+
+    useEffect(() => {
+        async function loadCat() {
+            const response = await api.get('categories');
+            
+            const nomes = response.data.map(item => item.name);
+            
+
+            setCategorias(nomes);
+        }
+        loadCat();
+        }, []);
 
   return (
     <Container>
       <ResponsiveBar
-      data={[
-        {
-          "Cupoms": "CP",
-          "Dona Joaquina": 11,
-          "hot dogColor": "hsl(242, 70%, 50%)",
-          "Mister Pizza": 93,
-          "burgerColor": "hsl(67, 70%, 50%)",
-          "DiAna": 67,
-          "sandwichColor": "hsl(311, 70%, 50%)",
-          "Hidráulica": 133,
-          "kebabColor": "hsl(130, 70%, 50%)",
-          "Vidraçaria": 133,
-          "friesColor": "hsl(148, 70%, 50%)",
-          "Knk": 161,
-          "donutColor": "hsl(358, 70%, 50%)"
-        },]}
-      keys={[ 'Dona Joaquina', 'Mister Pizza', 'DiAna', 'Hidráulica', 'Vidraçaria', 'Knk' ]}
+      data={[somatorio]}
+      keys={categorias}
       indexBy="Cupoms"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}

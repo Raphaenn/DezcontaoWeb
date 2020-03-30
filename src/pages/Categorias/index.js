@@ -8,7 +8,7 @@ import api from "../../services/api";
 import { addCatRequest } from "../../store/modules/categories/actions";
 import CatGrafic from "../../components/CatgGrafic";
 
-import { Container, Body, Left, Right, List, ListItem, ListItemAvatar, Avatar, ListItemText, ListItemText2, FormField, ButtonField, Divisor, Footer } from './styles';
+import { Container, Body, Left, Right, SpaceGrafc, List, ListItem, ListItemAvatar, Avatar, ListItemText, ListItemText2, FormField, ButtonField, Divisor, Footer } from './styles';
 
 export default function Categorias() {
 
@@ -74,6 +74,10 @@ export default function Categorias() {
 
         <Right>
           <h1>Categorias x Empresas</h1>
+
+          <SpaceGrafc>
+            <CatGrafic />
+          </SpaceGrafc>
 
           <Divisor />
           <Footer>
