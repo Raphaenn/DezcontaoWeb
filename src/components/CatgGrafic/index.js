@@ -3,34 +3,32 @@ import { ResponsiveBar } from '@nivo/bar'
 
 import { Container } from './styles';
 import api from "../../services/api";
-import test from "../../services/test.json"
+// import test from "../../services/test.json"
 
-export default function CatGrafic({}) {
+export default function CatGrafic() {
 
     const [ categorias, setCategorias ] = useState([]);
-    const [ chartData, setChartData ] = useState({});
-
-    const testando = test;
-    const filtrando = testando.map(item => item.categories.name);
-    const somatorio = testando.reduce(function( object , item ){  
-        if ( !object[item.categories.name] ) {
-           object[item.categories.name]=1;
-        } else {
-           object[item.categories.name]++;
-        }
-        return object; 
-      },{});  
-
-    console.tron.log(somatorio);
+    const [ chartData, setChartData ] = useState([]); 
 
     useEffect(() => {
         async function loadCat() {
             const response = await api.get('categories');
+            const response2 = await api.get('companies');
             
             const nomes = response.data.map(item => item.name);
-            
+            const somatorio = response2.data.reduce(function( object , item ){  
+                if ( !object[item.categories.name] ) {
+                   object[item.categories.name]=1;
+                } else {
+                   object[item.categories.name]++;
+                }
+                return object; 
+              },{});  
+
+              const done = Object.keys(somatorio).map(e => ({ Chave: e, [e]: somatorio[e]}))
 
             setCategorias(nomes);
+            setChartData(done)
         }
         loadCat();
         }, []);
@@ -38,12 +36,12 @@ export default function CatGrafic({}) {
   return (
     <Container>
       <ResponsiveBar
-      data={[somatorio]}
+      data={chartData}
       keys={categorias}
-      indexBy="Cupoms"
+      indexBy="Chave"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
-      colors={{ scheme: 'nivo' }}
+      colors={{ scheme: 'paired' }}
       defs={[
           {
               id: 'dots',
@@ -85,7 +83,7 @@ export default function CatGrafic({}) {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: 'Cupons',
+          legend: 'Categorias',
           legendPosition: 'middle',
           legendOffset: 32
       }}

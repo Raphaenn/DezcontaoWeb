@@ -1,122 +1,18 @@
 [
   {
-    "id": 1,
-    "name": "Dona Joaquina",
-    "email": "www.facebook.com/donajoaquinadocariaevineria",
-    "social": "@joaquinadona",
-    "phone": "21 96417-2593",
-    "cep": "24355050",
-    "address": "Shopping MultiCenter Itaipu, 2º piso",
-    "open_to": "10:00-22:00",
-    "latitude": "-22.940327",
-    "longitude": "-43.056289",
-    "paymentform": "Dinheiro e Cartão",
-    "obs": "Doçaria Portuguesa e Vineria",
-    "ticket": "10% nos produtos da loja",
-    "ticket2": null,
-    "ticket3": null,
-    "ticket4": null,
-    "highlight": true,
-    "path": {
-      "url": "https://dezcontao-api.s3.amazonaws.com/ce057c6d43e906dee3deac643dac0fed.png",
-      "id": 4,
-      "path": "ce057c6d43e906dee3deac643dac0fed.png"
-    },
-    "categories": {
-      "id": 4,
-      "name": "Comida",
-      "city": "Niterói",
-      "state": "Rio de Janeiro"
-    }
+    "Key": "AD",
+    "Comida": 19
   },
   {
-    "id": 2,
-    "name": "Mister Pizza",
-    "email": "https://www.facebook.com/Mister-Pizza-Itaipu",
-    "social": "@misterpizza",
-    "phone": "(21) 3492-4450",
-    "cep": "24320330",
-    "address": "Estrada Francisco da Cruz Nunes, 10.397 - loja 101 - Itaipu, Niterói - RJ",
-    "open_to": "11:00-01:00",
-    "latitude": "-22.953433",
-    "longitude": "-43.025035",
-    "paymentform": "Dinheiro e Cartão",
-    "obs": "Pizzaria e Massas",
-    "ticket": "10% nos produtos da loja",
-    "ticket2": null,
-    "ticket3": null,
-    "ticket4": null,
-    "highlight": true,
-    "path": {
-      "url": "https://dezcontao-api.s3.amazonaws.com/1ddb6dd390d8588127213cf6b2bdb242.jpg",
-      "id": 15,
-      "path": "1ddb6dd390d8588127213cf6b2bdb242.jpg"
-    },
-    "categories": {
-      "id": 4,
-      "name": "Comida",
-      "city": "Niterói",
-      "state": "Rio de Janeiro"
-    }
+    "Key": "AE",
+    "Beleza": 198
   },
   {
-    "id": 4,
-    "name": "DiAna",
-    "email": "https://www.facebook.com/salãodadiana",
-    "social": "@diana_cabelereiros",
-    "phone": "21 2609-1535",
-    "cep": "24340310",
-    "address": "Estrada Francisco da Cruz Nunes, 11077 - Itaipu, Niterói - RJ",
-    "open_to": "08:00-19:00",
-    "latitude": "-22.959887",
-    "longitude": "-43.029970",
-    "paymentform": "Dinheiro e Cartão",
-    "obs": "Salão de beleza",
-    "ticket": "10% nos demais produtos da loja",
-    "ticket2": null,
-    "ticket3": null,
-    "ticket4": null,
-    "highlight": true,
-    "path": {
-      "url": "https://dezcontao-api.s3.amazonaws.com/555a44c6ffd1b3e824f980872087610c.jpg",
-      "id": 3,
-      "path": "555a44c6ffd1b3e824f980872087610c.jpg"
-    },
-    "categories": {
-      "id": 2,
-      "name": "Beleza",
-      "city": "Niterói",
-      "state": "Rio de Janeiro"
-    }
+    "Key": "AF",
+    "Nada": 80
   },
   {
-    "id": 5,
-    "name": "Hidráulica Padilha",
-    "email": "https://www.facebook.com/hidraulicapadilha",
-    "social": "@instagram",
-    "phone": "(21) 97178-7895",
-    "cep": "24344504",
-    "address": "Rua Bertha Motta Vieira, qd 23 lote 3 - Engenho do Mato",
-    "open_to": "24h",
-    "latitude": "-22.928498",
-    "longitude": "-43.034856",
-    "paymentform": "Dinheiro e Cartão",
-    "obs": "Instalações e Manutenções",
-    "ticket": "10% em nossos serviços",
-    "ticket2": null,
-    "ticket3": null,
-    "ticket4": null,
-    "highlight": true,
-    "path": {
-      "url": "https://dezcontao-api.s3.amazonaws.com/f1adb5243ba4b7140060316319bd22da.jpg",
-      "id": 9,
-      "path": "f1adb5243ba4b7140060316319bd22da.jpg"
-    },
-    "categories": {
-      "id": 5,
-      "name": "Construção",
-      "city": "Niterói",
-      "state": "Rio de Janeiro"
-    }
+    "Key": "AG",
+    "Nao": 57
   }
 ]
