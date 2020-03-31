@@ -1,9 +1,9 @@
 import { takeLatest, call, put, all } from "redux-saga/effects";
 import { toast } from "react-toastify";
 
-// import history from '../../../services/history';
+import history from '../../../services/history';
 import api from "../../../services/api";
-import { addCompanyFailure, updateProfileSuccess,updateCompanyFailure } from "./actions";
+import { addCompanyFailure, updateProfileSuccess, updateCompanyFailure, deleteCompanyFailure } from "./actions";
 
 export function* CompanyRegister({ payload }) {
 
@@ -23,7 +23,7 @@ export function* CompanyRegister({ payload }) {
             paymentform,
             obs,
             ticket,
-            path1: 1,
+            path1: 16,
             category: 1,
             highlight: false,
         });
@@ -42,17 +42,15 @@ export function* updateCompany({ payload }) {
 
     try {
 
-        const { id, name, email, address, phone, cep, social, open_to, latitude, longitude, obs, paymentform, ticket, ticket2, ticket3, ticket4, highlight, category } = payload.data; 
+        const { id, name, email, address, phone, cep, social, open_to, latitude, longitude, obs, paymentform, ticket, ticket2, ticket3, ticket4, highlight, category, path } = payload.data; 
 
-        const CompanyData = { name, email, address, phone, cep, social, open_to, latitude, longitude, obs, paymentform, ticket, ticket2, ticket3, ticket4, highlight, category }
+        const CompanyData = { id, name, email, address, phone, cep, social, open_to, latitude, longitude, obs, paymentform, ticket, ticket2, ticket3, ticket4, highlight, category, path }
 
         const response = yield call(api.put, `companies/${id}`, CompanyData);
 
         toast.success('Dados atualizados com sucesso!');
 
         yield put(updateProfileSuccess(response.data))
-
-        // history.push('home'); -> caso queira futuramente redirecionar para home page
 
     } catch(err) {
         toast.error('Erro ao atualizar dados, tente novamente.');
@@ -61,7 +59,24 @@ export function* updateCompany({ payload }) {
 
 }
 
+export function* deleteCompany({ payload }) {
+    try {
+        const { id } = payload.item; 
+
+        yield call(api.delete, `companies/${id}`);
+
+        toast.success('Empresa excluída com sucesso!');
+
+        setTimeout(() => {  history.push('home'); }, 3000);
+
+    } catch(err) {
+        toast.error('Erro excluir empresa, tente novamente.');
+        yield put(deleteCompanyFailure())
+    }
+}
+
 export default all([
     takeLatest('ADD_COMPANY_REQUEST', CompanyRegister),
+    takeLatest('DELETE_COMPANY_REQUEST', deleteCompany),
     takeLatest('UPDATE_COMPANY_REQUEST', updateCompany),
 ]);

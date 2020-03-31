@@ -4,9 +4,9 @@ import { Form, Input } from "@rocketseat/unform";
 import * as Yup from 'yup';
 
 import AvatarInput from './AvatarInput';
-import { Container } from './styles';
+import { Container, ConfirmButton, DeleteButton } from './styles';
 
-import { updateCompanyRequest } from "../../store/modules/edit/actions";
+import { updateCompanyRequest, deleteCompany } from "../../store/modules/edit/actions";
 
 export default function Details() {
 
@@ -30,12 +30,17 @@ export default function Details() {
     ticket2: Yup.string("Campo Inválido"),
     ticket3: Yup.string("Campo Inválido"),
     ticket4: Yup.string("Campo Inválido"),
-    highlight: Yup.string("Campo Inválido").required("Campo Obrigatório"),
+    highlight: Yup.string("Campo Inválido"),
+    category: Yup.string("Campo Inválido").required("Campo Obrigatório")
 });
 
 function handlesubmit(data) {
   dispatch(updateCompanyRequest(data))
 };
+
+function handleDelete(categories) {
+  dispatch(deleteCompany(categories))
+}
 
   return (
     <Container>
@@ -46,7 +51,7 @@ function handlesubmit(data) {
             <p>Id</p>
             <Input name="id"/>
           </a>
-          <AvatarInput name="path_id"/>
+          <AvatarInput name="path1"/>
 
           <p>Nome da empresa</p>
           <Input name="name"/>
@@ -100,8 +105,9 @@ function handlesubmit(data) {
           <p>Categoria</p>
           <Input name="category" placeholder={companies.categories.id} />
 
-          <button type="submit">Atualizar Dados</button>
+          <ConfirmButton type="submit">Atualizar Dados</ConfirmButton>
         </Form>
+          <DeleteButton onClick={() => handleDelete(companies)}>Excluir</DeleteButton>
       
     </Container>
   );

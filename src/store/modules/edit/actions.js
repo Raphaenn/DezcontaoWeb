@@ -25,6 +25,19 @@ export function addCompanyFailure() {
     };
 }
 
+export function deleteCompany(item) {
+    return {
+        type: 'DELETE_COMPANY_REQUEST',
+        payload: { item }
+    }
+}
+
+export function deleteCompanyFailure() {
+    return {
+        type: 'DELETE_COMPANY_FAILURE',
+    };
+}
+
 export function updateCompanyRequest(data) {
     return {
         type: 'UPDATE_COMPANY_REQUEST',

@@ -87,6 +87,7 @@ export const ListItemText = styled.p`
 
 export const ListItemText2 = styled.p`
     margin-left: 14px;
+    width: 40px;
     margin-top: 5px;
     font-size: 14px;
     color: #666666;
