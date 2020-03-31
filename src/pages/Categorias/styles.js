@@ -48,11 +48,30 @@ export const ListItem = styled.li`
     flex-direction: row;
     border-radius: 4px;
     padding: 15px;
-    border-bottom: 1px solid rgba(235, 235, 235, 0.2);
+    border-bottom: 1px solid rgba(235, 235, 235, 0.5);
+
+    &:hover {
+        background: ${darken(0.03, 'rgba(235, 235, 235, 0.3)')}
+    }
+
+    div {
+        width: 42px;
+    }
 
 `;
 
 export const ListItemAvatar = styled.div``;
+
+export const Plus = styled.button`
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    border: none;
+    align-self: center;
+    margin-left: 90px;
+    justify-content: center;
+`;
 
 export const Avatar = styled.div`
     padding: 8px;
@@ -84,9 +103,17 @@ export const Right = styled.div`
     h1 {
         font-size: 18px;
         color: #282828;
-        margin-top: 20px;
-        margin-left: 20px;
     }
+`;
+
+export const BackChart = styled.button`
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    border: none;
+    margin-top: 20px;
+    margin-left: 20px;
+    align-items: center;
 `;
 
 export const SpaceGrafc = styled.div`
@@ -94,12 +121,50 @@ export const SpaceGrafc = styled.div`
     margin-top: 5px;
     width: 100%;
     height: 70%;
-    background: red;
+`;
+
+export const Espec = styled(PerfectScrollbar)`
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+`;
+
+export const GridItem = styled.li`
+    display: flex;
+    max-height: 100px;
+    flex-direction: row;
+    border-radius: 4px;
+    padding: 15px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(235, 235, 235, 0.5);
+
+    &:hover {
+        background: ${darken(0.03, 'rgba(235, 235, 235, 0.3)')}
+    }
+`;
+
+export const GridItemText = styled.p`
+    margin-top: 3px;
+    margin-left: 20px;
+    font-size: 16px;
+    width: 100px;
+`;
+
+export const GridItemText2 = styled.p`
+    margin-left: 14px;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #666666;
+    width: 200px;
+    text-align: justify;
 `;
 
 export const Divisor = styled.div`
     margin-top: 10px;
-    border-top: 1px dashed rgba(235, 235, 235);
+    border-top: 1px dashed rgba(102, 102, 102, 0.5);
 `;
 
 export const Footer = styled.div`

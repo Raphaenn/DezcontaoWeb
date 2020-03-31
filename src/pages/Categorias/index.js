@@ -2,18 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import ClassIcon from '@material-ui/icons/Class';
+import AddCircle  from '@material-ui/icons/AddCircle';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 
 import api from "../../services/api";
 import { addCatRequest } from "../../store/modules/categories/actions";
 import CatGrafic from "../../components/CatgGrafic";
 
-import { Container, Body, Left, Right, SpaceGrafc, List, ListItem, ListItemAvatar, Avatar, ListItemText, ListItemText2, FormField, ButtonField, Divisor, Footer } from './styles';
+import { Container, Body, Left, Right, BackChart, Espec, GridItem, GridItemText, GridItemText2, SpaceGrafc, List, ListItem, ListItemAvatar, Avatar, Plus, ListItemText, ListItemText2, FormField, ButtonField, Divisor, Footer } from './styles';
+
 
 export default function Categorias() {
 
   const dispatch = useDispatch();
+  const [ activeStep, setActiveStep ] = useState(0);
   const [ categorias, setCategorias ] = useState([]);
+  const [ companiesList, setCompaniesList ] = useState([]);
+  const [ filtragem, setFiltragem ] = useState([]);
   const [ catform, setCatform ] = useState({
     name: '',
     city: '',
@@ -23,20 +29,36 @@ export default function Categorias() {
   useEffect(() => {
     async function loadCat() {
         const response = await api.get('categories');
+        const responseTwo = await api.get('companies')
         
         const filtro = response.data.map(item => item);
+        const filtroTwo = responseTwo.data.map(item => item);
+
         setCategorias(filtro);
+        setCompaniesList(filtroTwo);
     }
     loadCat();
     }, []);
 
     const handleChange = input => event => {
       setCatform({ ...catform, [input]: event.target.value})
-    }
+    };
 
     const handleSave = async () => {
       dispatch(addCatRequest(catform));
       
+    };
+
+    function HandlePlus(item) {
+
+      const search = companiesList.filter(e => e.categories.id == item.id)
+
+      setFiltragem(search);
+      setActiveStep(item.id);
+    };
+
+    function handleBack() {
+      setActiveStep(0);
     }
     
 
@@ -63,6 +85,7 @@ export default function Categorias() {
                   <ListItemText> {item.name} </ListItemText>
                   <ListItemText2>Id: {item.id} </ListItemText2>
                  </div>
+                 <Plus onClick={() => HandlePlus(item)} ><AddCircle style={{ color: '#666666' }} /></Plus>
                </ListItem> 
               )) }
 
@@ -73,10 +96,24 @@ export default function Categorias() {
         </Left>
 
         <Right>
-          <h1>Categorias x Empresas</h1>
+          
+          <BackChart onClick={handleBack}>
+            <ArrowBackIosIcon style={{ color: '#666666', fontSize: 20 }} />
+            <h1>{ activeStep <= 0 ? 'Categorias x Empresas': 'Voltar'}</h1>            
+            </BackChart>          
 
           <SpaceGrafc>
-            <CatGrafic />
+            {activeStep <= 0 ? <CatGrafic /> : 
+            <Espec>
+              {filtragem.map(i => (
+                <GridItem>
+                  <GridItemText> {i.name} </GridItemText>
+                  <GridItemText2> {i.address} </GridItemText2>
+                  <GridItemText2> {i.phone} </GridItemText2>
+                </GridItem>
+              ) )}
+            </Espec> }
+            
           </SpaceGrafc>
 
           <Divisor />
@@ -98,18 +135,3 @@ export default function Categorias() {
     </Container>
   );
 }
-
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     border: '1px solid rgba(235, 235, 235)',
-//     borderRadius: 15,
-//     width: '100%',
-//     maxWidth: 360,
-//     maxHeight: '100%',
-//     marginTop: 10,
-//     backgroundColor: theme.palette.background.paper,
-//   },
-//   field: {
-//     marginTop: 20,
-//   },
-// }));
