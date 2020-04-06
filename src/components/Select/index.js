@@ -6,14 +6,16 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 
-export default function DropSelect({ nomes }) {
+export default function DropSelect({ nomes, tickets, catchData }) {
 
   const classes = useStyles();
-  const [companieslist, setCompanieslist] = useState();
   const [open, setOpen] = useState(false);
+  const [filterticket, setFilterticket] = useState([]);
 
-  const handleChange = event => {
-    setCompanieslist(event.target.value);
+  function handleChange(event) {
+    const valor = event.target.value;
+    const separar = tickets.filter((el, i) => el.companies.name === valor)
+    setFilterticket(separar);
   };
 
   const handleClose = () => {
@@ -26,6 +28,7 @@ export default function DropSelect({ nomes }) {
 
   return ( 
     <div>
+
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-controlled-open-select-label">Empresas</InputLabel>
         <Select
@@ -34,8 +37,8 @@ export default function DropSelect({ nomes }) {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={companieslist}
           onChange={handleChange}
+          catchData={catchData(filterticket)}
         >
           <MenuItem value="">
             <em>Todas</em>

@@ -10,16 +10,29 @@ import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import WorkIcon from '@material-ui/icons/Work';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
+/* Material Table Imports  */
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
 
 import { Container, Body, Left, TitleLeft, ListLeft, ListItem, ListItemAvatar, Avatar, Plus, ListItemText, ListItemText2, Right, Top, TitleRight, Bar, Base} from './styles';
 import DropSelect from "../../components/Select";
 
 import api from "../../services/api";
 
+
 export default function Tickets() {
 
+  const classes = useStyles();
   const [ cupons, setCupons ] = useState([]);
   const [ empresas, setEmpresas ] = useState([]);
+  const [ separar, setSeparar ] = useState([]);
 
   useEffect(() => {
     async function loadTickets() {
@@ -27,20 +40,25 @@ export default function Tickets() {
         
         const filtro = response.data.map(item => item);
         const companiesFilter = response.data.map( item => item.companies.name );
-        const onlynames = companiesFilter.filter((el, i, arr) => companiesFilter.indexOf(el) == i)
+        const onlynames = companiesFilter.filter((el, i, arr) => companiesFilter.indexOf(el) == i);
 
         setCupons(filtro);
         setEmpresas(onlynames);
-  
     }
     loadTickets();
     }, []);
 
+    const catchData = dados => {
+      setSeparar(dados);
+    }
+
+    const carregar = separar.length !== 0 ? separar : cupons
+
+
   return (
     <Container>
-      
       <Body>
-
+{/* {console.tron.log(cupons)} */}
         <Left>
           <TitleLeft>
             <h1>Últimos cupons adquiridos</h1>
@@ -72,13 +90,40 @@ export default function Tickets() {
         <Right>
             <TitleRight>
               <h1>Dados dos Cupons</h1>
-              <DropSelect nomes={empresas}/>
+              <DropSelect catchData={catchData} nomes={empresas} tickets={cupons}/>
             </TitleRight>
 
             <Top>
               <Bar>
                 
+                <TableContainer component={Paper}>
+                  <Table className={classes.table} aria-label="customized table">
+                    <TableHead>
+                      <TableRow>
+                        <StyledTableCell align="center">Empresa</StyledTableCell>
+                        <StyledTableCell align="center">Ticket</StyledTableCell>
+                        <StyledTableCell align="center">Id</StyledTableCell>
+                        <StyledTableCell align="center">Data</StyledTableCell>
+                        <StyledTableCell align="center">Destaque</StyledTableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {carregar.map((row) => (
+                        <StyledTableRow key={row.id}>
+                          <StyledTableCell align="center" component="th" scope="row">
+                            {row.companies.name}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">{row.name}</StyledTableCell>
+                          <StyledTableCell align="center">{row.id}</StyledTableCell>
+                          <StyledTableCell align="center">{row.companies.cep}</StyledTableCell>
+                          <StyledTableCell align="center">{row.companies.name}</StyledTableCell>
+                        </StyledTableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
               </Bar>
+
             </Top>
 
             <Base>
@@ -92,3 +137,30 @@ export default function Tickets() {
     </Container>
   );
 }
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: 'rgba(113, 89, 193, 0.5)',
+    color: theme.palette.common.white,
+    fontWeight: 'bold',
+  },
+  body: {
+    fontSize: 14,
+    width: 30,
+  },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.background.default,
+    },
+  },
+}))(TableRow);
+
+const useStyles = makeStyles({
+  table: {
+    minWidth: 700,
+    height: 400,
+  },
+});

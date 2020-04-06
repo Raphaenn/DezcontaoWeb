@@ -147,5 +147,6 @@ export const Base = styled.div`
 `;
 
 export const Bar = styled.div`
-
+    display: flex;
+    max-height: 400px;
 `;
