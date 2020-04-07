@@ -6,7 +6,8 @@ export const Container = styled.div`
     display: flex;
     flex: 1;
     align-self: center;
-    background: linear-gradient(-90deg, #7159C1, #ab59c1);
+    /* background: linear-gradient(-90deg, #7159C1, #ab59c1); */
+    background: #F2F3F2;
     margin: 60px auto;
     width: 1300px;
     height: 780px;
@@ -46,6 +47,9 @@ export const TitleLeft = styled.div`
 
 export const ListLeft = styled(PerfectScrollbar)`
     max-height: 650px;
+    /* max-width: 400px;
+    border-radius: 15px;
+    border: 1px solid rgba(235, 235, 235); */
 `;
 
 export const ListItem = styled.li`
@@ -141,12 +145,13 @@ export const Top = styled.div`
     width: 100%;
 `;
 
-export const Base = styled.div`
-    flex: 1;
-    background: green;
+export const Bar = styled(PerfectScrollbar)`
+    max-height: 375px;
 `;
 
-export const Bar = styled.div`
+export const Base = styled.div`
     display: flex;
-    max-height: 400px;
+    border-top: 1px dashed rgba(102, 102, 102, 0.3);
+    height: 100%;
+    max-height: 250px;
 `;

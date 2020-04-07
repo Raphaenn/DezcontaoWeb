@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ResponsiveBar } from '@nivo/bar'
 
 import PetsIcon from '@material-ui/icons/Pets';
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
@@ -33,17 +34,30 @@ export default function Tickets() {
   const [ cupons, setCupons ] = useState([]);
   const [ empresas, setEmpresas ] = useState([]);
   const [ separar, setSeparar ] = useState([]);
+  const [ chartData, setChartData ] = useState([]);
 
   useEffect(() => {
     async function loadTickets() {
         const response = await api.get('cupom');
         
-        const filtro = response.data.map(item => item);
+        const allTickets = response.data.map(item => item);
         const companiesFilter = response.data.map( item => item.companies.name );
         const onlynames = companiesFilter.filter((el, i, arr) => companiesFilter.indexOf(el) == i);
 
-        setCupons(filtro);
+        const ChartSum = allTickets.reduce(function( object , item ){  
+          if ( !object[item.companies.name] ) {
+             object[item.companies.name]=1;
+          } else {
+             object[item.companies.name]++;
+          }
+          return object; 
+        },{});  
+
+        const ChartInput = Object.keys(ChartSum).map(e => ({ Chave: e, [e]: ChartSum[e]}))
+
+        setCupons(allTickets);
         setEmpresas(onlynames);
+        setChartData(ChartInput);
     }
     loadTickets();
     }, []);
@@ -52,13 +66,12 @@ export default function Tickets() {
       setSeparar(dados);
     }
 
-    const carregar = separar.length !== 0 ? separar : cupons
-
+    const carregar = separar.length !== 0 ? separar : cupons;
 
   return (
     <Container>
       <Body>
-{/* {console.tron.log(cupons)} */}
+
         <Left>
           <TitleLeft>
             <h1>Últimos cupons adquiridos</h1>
@@ -127,7 +140,94 @@ export default function Tickets() {
             </Top>
 
             <Base>
-            
+                <ResponsiveBar
+                  data={chartData}
+                  keys={empresas}
+                  indexBy="Chave"
+                  margin={{ top: 50, right: 150, bottom: 50, left: 40 }}
+                  padding={0.3}
+                  colors={{ scheme: 'paired' }}
+                  defs={[
+                      {
+                          id: 'dots',
+                          type: 'patternDots',
+                          background: 'inherit',
+                          color: '#38bcb2',
+                          size: 4,
+                          padding: 1,
+                          stagger: true
+                      },
+                      {
+                          id: 'lines',
+                          type: 'patternLines',
+                          background: 'inherit',
+                          color: '#eed312',
+                          rotation: -45,
+                          lineWidth: 6,
+                          spacing: 10
+                      }
+                  ]}
+                  fill={[
+                      {
+                          match: {
+                              id: 'fries'
+                          },
+                          id: 'dots'
+                      },
+                      {
+                          match: {
+                              id: 'sandwich'
+                          },
+                          id: 'lines'
+                      }
+                  ]}
+                  borderColor={{ from: 'color', modifiers: [ [ 'darker', 1.6 ] ] }}
+                  axisTop={null}
+                  axisRight={null}
+                  axisBottom={{
+                      tickSize: 5,
+                      tickPadding: 5,
+                      tickRotation: 0,
+                  }}
+                  axisLeft={{
+                      tickSize: 5,
+                      tickPadding: 5,
+                      tickRotation: 0,
+                      legend: '',
+                      legendPosition: 'middle',
+                      legendOffset: -40
+                  }}
+                  labelSkipWidth={12}
+                  labelSkipHeight={12}
+                  labelTextColor={{ from: 'color', modifiers: [ [ 'darker', 1.6 ] ] }}
+                  legends={[
+                      {
+                          dataFrom: 'keys',
+                          anchor: 'bottom-right',
+                          direction: 'column',
+                          justify: false,
+                          translateX: 120,
+                          translateY: 0,
+                          itemsSpacing: 2,
+                          itemWidth: 100,
+                          itemHeight: 20,
+                          itemDirection: 'left-to-right',
+                          itemOpacity: 0.85,
+                          symbolSize: 20,
+                          effects: [
+                              {
+                                  on: 'hover',
+                                  style: {
+                                      itemOpacity: 1
+                                  }
+                              }
+                          ]
+                      }
+                  ]}
+                  animate={true}
+                  motionStiffness={90}
+                  motionDamping={15}
+                />
             </Base>
 
         </Right>
@@ -140,7 +240,7 @@ export default function Tickets() {
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: 'rgba(113, 89, 193, 0.5)',
+    backgroundColor: 'rgba(113, 89, 193, 0.6)',
     color: theme.palette.common.white,
     fontWeight: 'bold',
   },
@@ -161,6 +261,5 @@ const StyledTableRow = withStyles((theme) => ({
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
-    height: 400,
   },
 });
