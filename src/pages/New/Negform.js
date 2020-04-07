@@ -60,17 +60,13 @@ export default function Negform({ handleChange, values }) {
           onChange={handleChange('ticket4')}
           />
         </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={
-            <Checkbox 
-            color="primary" 
-            name="highlight" 
-            defaultValue={values.highlight} 
-            onChange={handleChange('highlight')}
-            />
-          }
-            label="Plano destaque"
+        <Grid item xs={12} md={6}>
+          <TextField 
+          name="payment" 
+          defaultValue={values.paymentform}
+          label="Formas de pagamento" 
+          fullWidth 
+          onChange={handleChange('paymentform')}
           />
         </Grid>
       </Grid>
