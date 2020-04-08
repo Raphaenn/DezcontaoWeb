@@ -31,7 +31,8 @@ export default function Details() {
     ticket3: Yup.string("Campo Inválido"),
     ticket4: Yup.string("Campo Inválido"),
     highlight: Yup.string("Campo Inválido"),
-    category: Yup.string("Campo Inválido").required("Campo Obrigatório")
+    category: Yup.string("Campo Inválido").required("Campo Obrigatório"),
+    path1: Yup.string("Campo Inválido")
 });
 
 function handlesubmit(data) {

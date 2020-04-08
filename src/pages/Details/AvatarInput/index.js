@@ -11,7 +11,7 @@ export default function AvatarInput() {
     const companies = useSelector(state => state.edit.dados);
 
     // Pegar os dados em formato objeto do usuário/avatar que está salvo no profile
-    const { defaultValue, registerField } = useField('path1');
+    const { defaultValue, registerField } = useField('path');
 
     const [file, setFile] = useState(defaultValue && defaultValue.id);
     // caso tenha algo salvo em defaultvalue pega o mesmo 
@@ -45,7 +45,7 @@ export default function AvatarInput() {
 
     return ( 
         <Container>
-            <label htmlFor="avatar">
+            <label htmlFor="path">
                 <img src={
                     preview || companies.path.url
                 }
@@ -53,7 +53,7 @@ export default function AvatarInput() {
 
                 <input 
                 type="file"
-                id="avatar"
+                id="path"
                 accept="image/*"
                 data-file={file}
                 onChange={handleChange}

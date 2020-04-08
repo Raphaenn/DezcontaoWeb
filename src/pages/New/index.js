@@ -137,7 +137,7 @@ function getStepContent(step) {
                     onClick={handleSave}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Finalizar Cadastro' : 'Next'}
                   </Button>
                   ) :
                   (
@@ -147,7 +147,7 @@ function getStepContent(step) {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Finalizar Cadastro' : 'Next'}
                   </Button>
                   )
 

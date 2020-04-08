@@ -42,9 +42,9 @@ export function* updateCompany({ payload }) {
 
     try {
 
-        const { id, name, email, address, phone, cep, social, open_to, latitude, longitude, obs, paymentform, ticket, ticket2, ticket3, ticket4, highlight, category, path } = payload.data; 
+        const { id, name, email, address, phone, cep, social, open_to, latitude, longitude, obs, paymentform, ticket, ticket2, ticket3, ticket4, highlight, category, path1 } = payload.data; 
 
-        const CompanyData = { id, name, email, address, phone, cep, social, open_to, latitude, longitude, obs, paymentform, ticket, ticket2, ticket3, ticket4, highlight, category, path }
+        const CompanyData = { id, name, email, address, phone, cep, social, open_to, latitude, longitude, obs, paymentform, ticket, ticket2, ticket3, ticket4, highlight, category, path1 }
 
         const response = yield call(api.put, `companies/${id}`, CompanyData);
 
