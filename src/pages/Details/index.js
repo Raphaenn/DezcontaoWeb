@@ -54,7 +54,7 @@ function handleDelete(categories) {
           </a>
           <AvatarInput name="path1"/>
 
-          <p>Nome da empresa</p>
+          <p>Nome da Empresa</p>
           <Input name="name"/>
 
           <p>Email</p>
