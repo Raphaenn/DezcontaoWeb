@@ -13,8 +13,9 @@ import GlobalStyle from './styles/global';
 
 function App() {
     return (
+        <>
+        <GlobalStyle />
         <Provider store={store}>
-            <GlobalStyle />
             <PersistGate persistor={persistor} >
                 <Router history={history}>
                     <Routes />
@@ -22,6 +23,7 @@ function App() {
                 </Router>
             </PersistGate>
         </Provider>
+        </>
     )
 }
 
