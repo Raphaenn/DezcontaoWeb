@@ -71,6 +71,7 @@ export const Plus = styled.button`
     align-self: center;
     margin-left: 90px;
     justify-content: center;
+    background: #fff;
 `;
 
 export const Avatar = styled.div`
@@ -115,6 +116,7 @@ export const BackChart = styled.button`
     margin-top: 20px;
     margin-left: 20px;
     align-items: center;
+    background: #fff;
 `;
 
 export const SpaceGrafc = styled.div`

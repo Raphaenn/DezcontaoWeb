@@ -58,7 +58,7 @@ export const First = styled.div`
     padding-top: 1.5rem;
     
     padding-right: 12px;
-    padding-left: 12px;
+    /* padding-left: 12px; */
     width: 100%;
     max-width: 95%;
     margin: 10px auto 10px auto;
