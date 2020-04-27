@@ -27,8 +27,6 @@ const Pagination = ({ listPerPage, totalPages, paginate }) => {
     setTest(pageNumbers.slice(0, 3));
   }
 
-  console.tron.log(test);
-
   return (
     <Grid>
       <ul className='pagination'>
