@@ -35,7 +35,7 @@ export default function Home() {
       {/* <MdSearch size={20} color="#666666" position="absolute;" /> */}
       <First>
         <div><strong>EMPRESAS</strong> <small>{card2.length}</small> </div>
-        <div><strong>DOWNLOADS APP</strong> <small>7</small> </div>
+        <div><strong>DOWNLOADS APP</strong> <small>127</small> </div>
         <div><strong>CUPONS GERADOS</strong> <small>{card.length}</small> </div>
         <div><strong>CUSTO DE NÚVEM</strong> <small>R$500,00</small> </div>
       </First>

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const Grid = styled.div`    
     position: absolute;
     margin-top: 650px;
-    margin-left: 650px;      
-    width: 200px;
+    margin-left: 600px;      
+    width: 300px;
 
     button {
         background: rgb(255, 255, 255, 1);

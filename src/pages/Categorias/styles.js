@@ -132,6 +132,7 @@ export const Espec = styled(PerfectScrollbar)`
     justify-content: center;
     width: 100%;
     height: 100%;
+    max-height: 380px;
 `;
 
 export const GridItem = styled.li`
