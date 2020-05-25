@@ -12,6 +12,7 @@ export default function DropSelect({ nomes, tickets, catchData }) {
   const [open, setOpen] = useState(false);
   const [filterticket, setFilterticket] = useState([]);
 
+  // Pegar  valor do input e filtra array tickets que são iguais ao valor
   function handleChange(event) {
     const valor = event.target.value;
     const separar = tickets.filter((el, i) => el.companies.name === valor)

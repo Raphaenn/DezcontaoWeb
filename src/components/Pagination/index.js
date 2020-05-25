@@ -6,26 +6,35 @@ import { Grid } from "./styles";
 const Pagination = ({ listPerPage, totalPages, paginate }) => {
   const pageNumbers = [1, 2, 3];
   const [test, setTest] = useState([]);
+  const [next, setNext] = useState(4);
 
-  // for (let i = 1; i <= Math.ceil(totalPages / listPerPage); i++) {
-  //   pageNumbers.push(i);
-  // };
 
+  // Se next for menor que total de página / 2 limpamos o array test e pagenumber e depois iteramos por ele criando arrays de 3 números, sempre aumentando o valor das duas ultimas casas.
   function handleNext() {
+   if(next <= ((totalPages/listPerPage)-2)) {
+    test.splice(0, test.length);
     pageNumbers.splice(0, pageNumbers.length);
-    for (let i = 4; i <= Math.ceil(totalPages / listPerPage); i++) {
-    pageNumbers.push(i);
-  };
-    setTest(pageNumbers);
+    for (let i = next; i <= next + 2; i++) {
+     test.push(i);
+     setNext(i)
+    }
+   }
+   console.tron.log("ida: " + next)
   }
 
   function handlePrev() {
-    pageNumbers.splice(0, pageNumbers.length);
-    for (let i = 1; i <= Math.ceil(totalPages / listPerPage); i++) {
-    pageNumbers.push(i);
+    // if(next > 4) {
+    //   test.splice(0, test.length);
+    //   for (let i = next-2; i >= next - 4; i--) {
+    //    test.push(i);
+    //    setNext(i)
+    //   }
+    //   test.reverse();
+    //   console.tron.log("volta: " + next)
+    //  }
+    setTest([]);
+    setNext(4)
   };
-    setTest(pageNumbers.slice(0, 3));
-  }
 
   return (
     <Grid>
