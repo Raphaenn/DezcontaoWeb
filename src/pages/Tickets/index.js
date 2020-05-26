@@ -43,9 +43,6 @@ export default function Tickets() {
         const response = await api.get('cupom');
         
         const allTickets = response.data.map(item => item);
-        const TicketData = allTickets.map(item => format(parseISO(item.created_at), "d 'de' MMMM", {locale: pt}));
-
-        console.tron.log(TicketData)    
 
         const companiesFilter = response.data.map( item => item.companies.name );
         const onlynames = companiesFilter.filter((el, i, arr) => companiesFilter.indexOf(el) == i);
