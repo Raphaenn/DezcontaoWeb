@@ -109,7 +109,7 @@ export const ListItemText = styled.p`
 `;
 
 export const ListItemText2 = styled.p`
-    margin-left: 14px;
+    margin-left: 10px;
     width: 150px;
     font: 16px 'Nunito', sans-serif;
     color: rgba(37,41,63, 0.8);

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ResponsiveBar } from '@nivo/bar'
+import { format, parseISO, formatDistance } from "date-fns";
+import pt from 'date-fns/locale/pt';
 
 import PetsIcon from '@material-ui/icons/Pets';
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
@@ -41,6 +43,10 @@ export default function Tickets() {
         const response = await api.get('cupom');
         
         const allTickets = response.data.map(item => item);
+        const TicketData = allTickets.map(item => format(parseISO(item.created_at), "d 'de' MMMM", {locale: pt}));
+
+        console.tron.log(TicketData)    
+
         const companiesFilter = response.data.map( item => item.companies.name );
         const onlynames = companiesFilter.filter((el, i, arr) => companiesFilter.indexOf(el) == i);
 
@@ -91,7 +97,7 @@ export default function Tickets() {
               </ListItemAvatar>
               <div>
               <ListItemText> {item.companies.name} </ListItemText>
-              <ListItemText2> 02/04/2020  - {item.category.city}</ListItemText2>
+              <ListItemText2> {format(parseISO(item.created_at), "dd/MM/yyyy", {locale: pt})}  - {item.category.city}</ListItemText2>
               </div>
               <Plus ><span> {item.name} </span></Plus>
             </ListItem>
@@ -128,7 +134,7 @@ export default function Tickets() {
                           </StyledTableCell>
                           <StyledTableCell align="center">{row.name}</StyledTableCell>
                           <StyledTableCell align="center">{row.id}</StyledTableCell>
-                          <StyledTableCell align="center">{row.companies.cep}</StyledTableCell>
+                          <StyledTableCell align="center">{format(parseISO(row.created_at), "dd/MM/yyyy", {locale: pt})}</StyledTableCell>
                           <StyledTableCell align="center">{row.companies.name}</StyledTableCell>
                         </StyledTableRow>
                       ))}
