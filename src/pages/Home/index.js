@@ -32,7 +32,6 @@ export default function Home() {
         <Title>Dashboard</Title>
         <Register to='/novo'><p>New</p><MdAddCircle size={20} color="#7E59C1" /></Register>
       </Top>
-      {/* <MdSearch size={20} color="#666666" position="absolute;" /> */}
       <First>
         <div><strong>EMPRESAS</strong> <small>{card2.length}</small> </div>
         <div><strong>DOWNLOADS APP</strong> <small>127</small> </div>
