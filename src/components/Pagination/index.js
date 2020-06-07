@@ -9,18 +9,17 @@ const Pagination = ({ listPerPage, totalPages, paginate }) => {
   const [next, setNext] = useState(4);
 
 
-  // Se next for menor que total de página / 2 limpamos o array test e pagenumber e depois iteramos por ele criando arrays de 3 números, sempre aumentando o valor das duas ultimas casas.
+  // Se next for menor que total de página - 2 limpamos o array test e pagenumber e depois iteramos por ele criando arrays de 3 números, sempre aumentando o valor das duas ultimas casas.
   function handleNext() {
-   if(next <= (Math.round((totalPages/listPerPage)-2))) {
+   if(next <= (Math.ceil((totalPages/listPerPage)))) {
     test.splice(0, test.length);
     pageNumbers.splice(0, pageNumbers.length);
     for (let i = next; i <= next + 2; i++) {
      test.push(i);
-     setNext(i)
+     setNext(i);
     }
    }
-   console.tron.log("ida: " + next)
-  }
+  };
 
   function handlePrev() {
     setTest([]);
