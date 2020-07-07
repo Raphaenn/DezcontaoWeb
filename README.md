@@ -1,68 +1,44 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">
+    <img width="500" alt="React GitHub Repo List" src="https://upload-dezcontao.s3.us-east-2.amazonaws.com/DashHome.png" />
+    <img width="500" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://upload-dezcontao.s3.us-east-2.amazonaws.com/DashTickets.png"><br><img width="500" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://upload-dezcontao.s3.us-east-2.amazonaws.com/DashCat.png">
+    <br>
+    Adm Dashboard - Dezcontão
+</h1>
 
-## Available Scripts
+## Descricao do projeto
 
-In the project directory, you can run:
+Este projeto foi realizado a pedido de um cliente, que precisava de um dashboard interativo para gerenciar o negócio dele. Além de fornecer diversos dados, é possivel fazer o cadastro de novas empresas e etc. O projeto está sendo disponibilizado para aqueles que querem uma ajuda na hora de criar um dashboard. 
 
-### `yarn start`
+Obs: Os links para o backend são fakes, logo não vão funcionar. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## :rocket: Technologies
 
-### `yarn test`
+This project was developed by Raphael Neves with the following technologies:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-  [React Js](https://reactnative.dev)
+-  [Node js](https://rnfirebase.io)
+-  [Redux](https://redux.js.org/)
+-  [Redux-Saga](https://redux-saga.js.org/)
+-  [Material](https://material-ui.com/pt/)
+-  [Immer](https://github.com/immerjs/immer)
+-  [React-Toastify](https://fkhadra.github.io/react-toastify/)
+-  [styled-components](https://www.styled-components.com/)
+-  [Axios](https://github.com/axios/axios)
+-  [Reactotron](https://infinite.red/reactotron)
+-  [Date-fns](https://date-fns.org/)
+-  [VS Code][vc] with [EditorConfig][vceditconfig] and [ESLint][vceslint]
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## :memo: License
+This project is under the MIT license. See the [LICENSE](https://github.com/Raphaenn/DezcontaoWeb) for more information.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Create by Raphael Neves :wave: [Get in touch!](https://www.linkedin.com/in/raphaelnneves/)
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[nodejs]: https://nodejs.org/
+[yarn]: https://yarnpkg.com/
+[vc]: https://code.visualstudio.com/
+[vceditconfig]: https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
+[vceslint]: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
